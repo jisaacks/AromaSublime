@@ -9,12 +9,42 @@ class AromaHelper:
 
     return AromaHelper._settings.get(key)
 
+  @staticmethod
+  def requirements_met():
+    # Is node installed?
+    node_installed = AromaHelper.is_installed("node")
+
+    # Is aroma installed?
+    aroma_installed = AromaHelper.is_installed("aroma")
+
+    if node_installed and aroma_installed:
+      return True
+    else:
+      if not node_installed:
+        sublime.message_dialog("You need Node.js installed to run Aroma. To install visit: nodejs.org")
+      else:
+        sublime.message_dialog("You need to install the Aroma binary:\nnpm install -g aroma")
+      return False
+
+
+  @staticmethod
+  def is_installed(app):
+    pro = subprocess.Popen(["which",app], stdout=subprocess.PIPE)
+    (out, err) = pro.communicate()
+    if err:
+      raise Exception("Aroma: Cannot determine if node is installed. Got error:",err)
+    else:
+      return len(out) > 0
+
+
 #------
 
 class AromaCompiler:
   _watching = {}
   @staticmethod
   def run(*opts):
+    if not AromaHelper.requirements_met():
+      return None
     args = ["aroma"]
     for opt in opts:
       args.append(opt)
