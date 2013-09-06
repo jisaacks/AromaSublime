@@ -14,7 +14,7 @@ class AromaCompiler:
 
   @staticmethod
   def watch(source):
-    pro = subprocess.Popen(["aroma", "-wc", source, "&"], stdout=subprocess.PIPE)
+    pro = subprocess.Popen(["aroma", "-wc", source], stdout=subprocess.PIPE)
     print ("Aroma Watching:",source)
     AromaCompiler._watching[source] = pro.pid
 
