@@ -1,0 +1,4 @@
+{
+  // Specify an extension to compile to other than .plist
+  // "use_extension": "tmTheme"
+}

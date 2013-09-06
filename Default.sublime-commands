@@ -1,0 +1,18 @@
+[
+    {
+        "caption": "Aroma: Compile Current File",
+        "command": "aroma_compile_current"
+    },
+    {
+        "caption": "Aroma: Compile All",
+        "command": "aroma_compile_all"
+    },
+    {
+        "caption": "Aroma: Watch Current File",
+        "command": "aroma_watch_current"
+    },
+    {
+        "caption": "Aroma: Unwatch Current File",
+        "command": "aroma_unwatch_current"
+    }
+]
