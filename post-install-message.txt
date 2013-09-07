@@ -1,0 +1,19 @@
+
+
+Aroma for Sublime
+=================
+
+Requirements:
+
+ * Make sure you have Node.js installed. Get it here: nodejs.org
+
+ * Install the Aroma package for Node: `npm install -g aroma`
+
+
+
+
+
+Thanks for installing!
+----------------------
+Make sure to report issues.
+Pull requests are welcome!
