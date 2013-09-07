@@ -82,6 +82,7 @@ class AromaCompiler:
         pid = AromaCompiler._watching[source]
         print ("Aroma attempting to kill:",pid)
         os.kill(pid, signal.SIGTERM)
+        del AromaCompiler._watching[source]
 
 #------
 
@@ -108,3 +109,24 @@ class AromaUnwatchCurrentCommand(sublime_plugin.WindowCommand):
         v = self.window.active_view()
         fil = v.file_name()
         AromaCompiler.unwatch(fil)
+
+class AromaListWatchingCommand(sublime_plugin.WindowCommand):
+    def run(self):
+        w = self.window
+        if len(AromaCompiler._watching):
+            self.watching = []
+            for watched in AromaCompiler._watching.keys():
+                self.watching.append(watched)
+            w.show_quick_panel(self.watching,self.quick_panel_handler)
+        else:
+            sublime.message_dialog("Aroma is not currently watching anything.")
+
+    def quick_panel_handler(self,index):
+        if index == -1:
+            return
+        fil = self.watching[index]
+        nam = fil.split("/")[-1]
+        unwatch = sublime.ok_cancel_dialog(
+            "Unwatch "+nam+"?", "Unwatch")
+        if unwatch:
+            AromaCompiler.unwatch(fil)

@@ -14,5 +14,9 @@
     {
         "caption": "Aroma: Unwatch Current File",
         "command": "aroma_unwatch_current"
+    },
+    {
+        "caption": "Aroma: List Watching",
+        "command": "aroma_list_watching"
     }
 ]
